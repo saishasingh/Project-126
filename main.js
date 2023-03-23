@@ -6,6 +6,8 @@ leftWrist_x = 0;
 leftWrist_y = 0;
 scoreleftWrist = 0;
 song_name = "";
+scoreRightWrist = 0;
+songa = "";
 
 function setup(){
     canvas = createCanvas(600,530);
@@ -43,6 +45,25 @@ function draw(){
             document.getElementById("song_id").innerHTML = "Song Name: acoustic vibe";
         }
     }
+    song_name = Harry_potter_theme_song.isPlaying();
+    console.log(song_name);
+    
+    fill("#00ff00");
+    stroke("#ff0000");
+
+    if (scoreRightWrist > 0.1){
+        circle(rightWrist_x,rightWrist_y,20);
+   Peter_pan_song.stop();
+        if(song_name == false){
+           Harry_potter_theme_song.play();
+        }
+        else{
+            console.log("Song Name: Peter Pan Song");
+            document.getElementById("song_id").innerHTML = "Song Name: guitarvibe";
+        }
+
+
+    } 
 }
 
 function modelLoaded(){
@@ -55,6 +76,9 @@ function gotposes(results){
 
         scoreleftWrist = results[0].pose.keypoints[9].score;
         console.log(scoreleftWrist);
+        scoreRightWrist = results[0].pose.keypoints[10].score;
+        console.log(scoreRightWrist);
+
 
         leftWrist_x = results[0].pose.leftWrist.x;
         leftWrist_y = results[0].pose.leftWrist.y;
